@@ -1,36 +1,24 @@
 <template>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated id="title">
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-          id="title"
-          class="title"
-        />
-
-        <q-toolbar-title> Quasar App </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <q-toolbar-title align="center"> Recepies Galore </q-toolbar-title>
       </q-toolbar>
     </q-header>
-
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-list>
-        <q-item-label header> Essential Links </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -38,8 +26,6 @@
 </template>
 
 <script>
-import EssentialLink from "components/EssentialLink.vue";
-
 const linksList = [
   {
     title: "Docs",
@@ -90,20 +76,13 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "MainLayout",
 
-  components: {
-    EssentialLink,
-  },
-
-  setup() {
-    const leftDrawerOpen = ref(false);
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-    };
-  },
+  components: {},
 });
 </script>
+<style scoped>
+#title {
+  background-image: linear-gradient(to right, #decba4, #3e5151);
+  font-family: "Exo 2", sans-serif;
+  font-size: 55px;
+}
+</style>
