@@ -15,6 +15,19 @@
   </head>
   <q-page class="flex flex-center bg-accent">
     <!-- <div class="q-pa-lg row items-start"> -->
+    <div class="q-pt-lg">
+      <iframe
+        width="1200"
+        height="250"
+        src="https://www.youtube.com/embed/4efyvTMNSAU?start=36;?autoplay=1"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        autoplay
+        loop
+        allowfullscreen
+      ></iframe>
+    </div>
+    <!-- <Parallax></Parallax> -->
     <div class="row q-pt-xl q-pb-xl q-pl-xl q-ml-xl q-gutter-md" id="container">
       <q-card
         v-for="cards in recipeCards"
@@ -43,11 +56,11 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
 import { ref } from "vue";
 
-export default defineComponent({
+export default {
   name: "PageIndex",
+  components: {},
   data() {
     return {
       recipeCards: [
@@ -104,7 +117,7 @@ export default defineComponent({
       ],
     };
   },
-});
+};
 </script>
 <style scoped>
 #cards {
