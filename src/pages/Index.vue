@@ -15,11 +15,15 @@
   </head>
   <q-page class="flex flex-center bg-accent">
     <!-- <div class="q-pa-lg row items-start"> -->
+
     <div class="q-pt-lg">
+      <h4 align="center" class="inherit text-white" id="video-title">
+        Recipe of the day
+      </h4>
       <iframe
         width="1200"
         height="250"
-        src="https://www.youtube.com/embed/4efyvTMNSAU?start=36;?autoplay=1"
+        src="https://www.youtube.com/embed/ZqEqtmMY1M0?autoplay=1&mute=1"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         autoplay
@@ -36,8 +40,13 @@
         align="center"
         id="cards"
       >
-        <!-- <q-img id="img" :src="cards.img" fit="none" /> -->
-
+        <q-btn
+          align="inherit"
+          color="inherit"
+          label="recipe"
+          class="text-black"
+          @click="ingredients"
+        />
         <q-card-section>
           <q-img id="img" :src="cards.img" fit="contain" />
 
@@ -57,12 +66,11 @@
 
 <script>
 import { ref } from "vue";
-
+import { useQuasar } from "quasar";
 export default {
-  name: "PageIndex",
-  components: {},
   data() {
     return {
+      fab1: ref(true),
       recipeCards: [
         {
           title: "Fajita Steak with veggies",
@@ -72,6 +80,7 @@ export default {
           img: [require("../assets/fajita-4.jpg")],
           class: "my-card col-4",
           id: "card-1",
+          ingredients: "steak, fajitas, onions",
         },
         {
           title: "Gourmet Ramen Noodles",
@@ -80,6 +89,7 @@ export default {
           img: [require("../assets/ramen.jpg")],
           class: "my-card col-4 bg-info text-white",
           id: "card-2",
+          ingredients: "noodles and hot water",
         },
         {
           title: "Beans and Hotdogs",
@@ -88,6 +98,7 @@ export default {
           img: [require("../assets/hotdogs.jpg")],
           class: "my-card col-2",
           id: "card-3",
+          ingredients: "beans and fresh hot dogs",
         },
         {
           title: "Beef Quesodillas",
@@ -96,6 +107,7 @@ export default {
           img: [require("../assets/quesodilla.jpg")],
           class: "my-card col-4",
           id: "card-4",
+          ingredients: "steak, fajitas, queso sauce and other tings",
         },
         {
           title: "Traditional Zalabia",
@@ -105,6 +117,7 @@ export default {
           img: [require("../assets/zalabia.jpg")],
           class: "my-card col-4 bg-info text-white",
           id: "card-5",
+          ingredients: "fried food lol, fajitas, onions",
         },
         {
           title: "Ethopian Chia",
@@ -113,10 +126,28 @@ export default {
           img: [require("../assets/tea.jpg")],
           class: "my-card col-2",
           id: "card-6",
+          ingredients: "steak, fajitas, onions",
         },
       ],
     };
   },
+  setup() {
+    const $q = useQuasar();
+    function ingredients() {
+      $q.dialog({
+        title: "the recipe for this dish is",
+        message: "To be continued",
+        persistent: true,
+        cancel: true,
+        dark: true,
+      });
+    }
+    return {
+      ingredients,
+    };
+  },
+  name: "PageIndex",
+  components: {},
 };
 </script>
 <style scoped>
@@ -130,9 +161,13 @@ export default {
 }
 #container {
   padding-left: 10%;
+  font-size: 20px;
 }
 #img {
   object-fit: cover;
+}
+#video-title {
+  font-family: "Exo 2", sans-serif;
 }
 @media screen and (max-width: 300px) {
   #cards {
