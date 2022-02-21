@@ -45,8 +45,10 @@
           color="inherit"
           label="recipe"
           class="text-black"
+          id="dropdown"
           @click="ingredients"
         />
+        <h4 class="text-black">{{ recipeCards.ingredients }}</h4>
         <q-card-section>
           <q-img id="img" :src="cards.img" fit="contain" />
 
@@ -136,7 +138,7 @@ export default {
     function ingredients() {
       $q.dialog({
         title: "the recipe for this dish is",
-        message: "To be continued",
+        message: "working on this",
         persistent: true,
         cancel: true,
         dark: true,
@@ -154,6 +156,8 @@ export default {
 #cards {
   font-family: "Exo 2", sans-serif;
   font-weight: 300;
+  position: relative;
+  display: inline-block;
   /* inset-inline: left; */
   /* justify-content: inherit; */
   /* white-space: pre-wrap; */
@@ -168,6 +172,18 @@ export default {
 }
 #video-title {
   font-family: "Exo 2", sans-serif;
+}
+#dropdown {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+#cards:hover #dropdown {
+  display: block;
 }
 @media screen and (max-width: 300px) {
   #cards {
